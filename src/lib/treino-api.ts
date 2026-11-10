@@ -166,3 +166,7 @@ export async function sincronizar() {
   localStorage.setItem(KEY, JSON.stringify(estado));
   ouvintes.forEach((f) => f());
 }
+export function restaurarSerie(s: Serie) {
+  const e = carregar();
+  salvar({ ...e, series: [...e.series, { ...s, sincronizado: false }] });
+}

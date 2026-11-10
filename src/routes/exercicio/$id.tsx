@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUp, Minus, Trash2 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Stepper } from "@/components/Stepper";
-import { buscarSeries, editarSerie, excluirSerie, registrarSerie, type Serie } from "@/lib/treino-api";
+import { buscarSeries, editarSerie, excluirSerie, registrarSerie, restaurarSerie, type Serie } from "@/lib/treino-api";
 import { useTreino } from "@/lib/use-treino";
 
 export const Route = createFileRoute("/exercicio/$id")({
@@ -115,7 +115,7 @@ function Conteudo({ id }: { id: string }) {
           <span>Série excluída</span>
           <button
             className="tap font-semibold text-primary"
-            onClick={() => { registrarSerieDesfeita(desfazer); setDesfazer(null); }}
+            onClick={() => { restaurarSerie(desfazer); setDesfazer(null); }}
           >Desfazer</button>
         </div>
       ) : null}
@@ -123,9 +123,6 @@ function Conteudo({ id }: { id: string }) {
   );
 }
 
-function registrarSerieDesfeita(s: Serie) {
-  registrarSerie(s.exercicioId, s.peso, s.reps);
-}
 
 function Diferenca({ atual, antes }: { atual: Serie; antes?: Serie }) {
   if (!antes) return <span className="text-xs text-muted-foreground">nova</span>;
