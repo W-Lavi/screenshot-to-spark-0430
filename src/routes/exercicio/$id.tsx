@@ -137,7 +137,7 @@ function LinhaHoje({ s, i, anterior, onTap, onSwipe }: { s: Serie; i: number; an
   const inicio = useRef<number | null>(null);
   const moveu = useRef(false);
   return (
-    <li className="relative overflow-hidden rounded-2xl bg-destructive">
+    <li className={`relative overflow-hidden rounded-2xl ${dx < 0 ? "bg-destructive" : "bg-card"}`}>
       <span className="absolute inset-y-0 right-4 flex items-center text-destructive-foreground"><Trash2 className="size-5" /></span>
       <button
         onPointerDown={(e) => { inicio.current = e.clientX; moveu.current = false; }}
