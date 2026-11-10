@@ -124,7 +124,7 @@ function Conteudo({ id }: { id: string }) {
 }
 
 
-function Diferenca({ atual, antes }: { atual: Serie; antes?: Serie }) {
+function Diferenca({ atual, antes }: { atual: Serie; antes?: Serie | undefined }) {
   if (!antes) return <span className="text-xs text-muted-foreground">nova</span>;
   const d = Math.round((atual.peso - antes.peso) * 10) / 10;
   if (d > 0) return <span className="flex items-center gap-0.5 text-sm font-semibold text-success"><ArrowUp className="size-4" />{d} kg</span>;
@@ -132,7 +132,7 @@ function Diferenca({ atual, antes }: { atual: Serie; antes?: Serie }) {
   return <span className="flex items-center gap-0.5 text-sm text-muted-foreground"><Minus className="size-4" />igual</span>;
 }
 
-function LinhaHoje({ s, i, anterior, onTap, onSwipe }: { s: Serie; i: number; anterior?: Serie; onTap: () => void; onSwipe: () => void }) {
+function LinhaHoje({ s, i, anterior, onTap, onSwipe }: { s: Serie; i: number; anterior?: Serie | undefined; onTap: () => void; onSwipe: () => void }) {
   const [dx, setDx] = useState(0);
   const inicio = useRef<number | null>(null);
   const moveu = useRef(false);

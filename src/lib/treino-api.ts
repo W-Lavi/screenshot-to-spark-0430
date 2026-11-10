@@ -49,7 +49,7 @@ function diasAtras(n: number) {
 function semente(): Estado {
   const exercicios = PADRAO.map((nome) => ({ id: uuid(), nome, personalizado: false }));
   const s = (ex: number, dia: number, peso: number, reps: number, i: number): Serie => ({
-    id: uuid(), exercicioId: exercicios[ex].id, peso, reps, data: diasAtras(dia),
+    id: uuid(), exercicioId: exercicios[ex]!.id, peso, reps, data: diasAtras(dia),
     criadoEm: Date.now() - dia * 864e5 + i * 1000, sincronizado: true,
   });
   const series = [
