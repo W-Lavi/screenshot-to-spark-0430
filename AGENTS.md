@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- All data access goes through `src/lib/treino-api.ts` (mock localStorage today); why: swap for the Spring Boot API without touching screens.
+- Records use device-generated UUIDs; why: the app must work offline.
