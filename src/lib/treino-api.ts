@@ -89,7 +89,13 @@ export const store = {
 };
 
 // ---------- API ----------
-export function entrar(apelido: string) { salvar({ ...carregar(), usuario: apelido.trim() }); }
+export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+export function emailValido(email: string) { return email.trim().length <= 254 && EMAIL_RE.test(email.trim()); }
+export function entrar(email: string) {
+  const e = email.trim().toLowerCase();
+  if (!emailValido(e)) throw new Error("E-mail inválido");
+  salvar({ ...carregar(), usuario: e.split("@")[0]! });
+}
 export function sair() { salvar({ ...carregar(), usuario: null }); }
 export function definirTema(tema: Estado["tema"]) { salvar({ ...carregar(), tema }); }
 
